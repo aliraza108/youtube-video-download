@@ -1,0 +1,130 @@
+
+
+check my code it doesn't iterate in date it shows error that elment not found which is in tble td but it appear on click on the date option but I hve click on it but still it shos the error
+& also check it there are title="Available"  the show the it is availabe in print	
+
+ "from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+import undetected_chromedriver as webdriver
+import time
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import openpyxl
+from selenium.webdriver.support.select import Select
+from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.action_chains import ActionChains
+
+# Replace with the path to your WebDriver executable
+webdriver_path = 'chromedriver.exe'
+
+options = webdriver.ChromeOptions()
+options.add_argument("user-data-dir=C:\\Users\\HP\\AppData\\Local\\Google\\Chrome\\User Data")
+options.add_argument('--profile-directory=Default')
+driver = webdriver.Chrome(options=options, use_subprocess=True)
+
+driver.get('https://blsitalypakistan.com/account/login/')
+
+driver.implicitly_wait(1)
+username = driver.find_element(By.XPATH,"/html/body/div[6]/div/div/div/div/div[2]/form/div[2]/input")
+password = driver.find_element(By.XPATH,"/html/body/div[6]/div/div/div/div/div[2]/form/div[4]/input")
+submit = driver.find_element(By.NAME,"submitLogin")
+username.send_keys("Afzalwaqar4455@gmail.com")
+password.send_keys("afzal1122")
+time.sleep(5)
+submit.click()
+
+driver.get('https://blsitalypakistan.com/bls_appmnt/bls-italy-appointment')
+time.sleep(2)
+driver.implicitly_wait(5)
+city = Select(driver.find_element(By.XPATH,'/html/body/div[13]/div/div/div[2]/div/form/div[1]/select'))
+city.select_by_visible_text('Quetta (Pakistan)')
+driver.implicitly_wait(2)
+
+destination = Select(driver.find_element(By.XPATH, "/html/body/div[11]/div/div/div[2]/div/form/div[2]/select"))
+destination.select_by_visible_text('Legalisation')
+
+driver.implicitly_wait(2)
+qty = Select(driver.find_element(By.XPATH, "/html/body/div[11]/div/div/div[2]/div/form/div[3]/select"))
+qty.select_by_visible_text('Individual')
+
+date = driver.find_element(By.XPATH, "/html/body/div[11]/div/div/div[2]/div/form/div[6]/input").click()
+date_sel = driver.find_element(By.XPATH,f"/html/body/div[18]/div[5]/table/tbody/tr[5]/td[3]")
+print(date_sel)
+t  = 1
+d = 1
+while(t>7):
+    while(d>8):
+        try:
+            date_sel = driver.find_element(By.XPATH,f"/html/body/div[18]/div[{t}]/table/tbody/tr[5]/td[{d}]")
+            date.click()
+            print("Got date", date.text)
+        except:
+            print("date not found")
+        d = d +1
+    t = t+1
+        
+print("closed")
+time.sleep(1000)      
+# try:
+#         while True:
+
+#                 # Reload the page
+#                 driver.refresh()
+                
+#                 # Check if the desired date is available
+#                 # Replace 'date_selector' with the appropriate selector for the appointment date element
+#                 available_dates = driver.find_element(By.XPATH, "/html/body/div[11]/div/div/div[2]/div/form/div[6]/input")
+#                 print(available_dates)
+#                 if available_dates:
+#                  for date in available_dates:
+#                         print(date)
+#                         if 'desired_date' in date.text:
+#                                 date.click()
+#                                 print(date)
+#                                 # Proceed to book the appointment
+#                                 book_button = driver.find_element(By.ID, 'book_button_id')
+#                                 book_button.click()
+#                                 print('Appointment booked!')
+#                         else:
+#                                 print(f"tring the date {date}")
+
+# except Exception as e:
+#                 print(f'An error occurred: {e}')
+
+    
+#     # Wait before checking again
+# time.sleep(30)
+
+# # Close the browser
+# driver.quit()
+
+# except:
+#         print("issssssssssssssssssssssue")
+# time.sleep(2)
+# try:
+#         click = driver.find_element(By.XPATH, "/html/body/div[18]/div[1]/table/tbody/tr[3]/td[4]").click()
+# except:
+#         print("Dateeeeeeeeeeeeeeee")
+
+# driver.implicitly_wait(2)
+# types = Select(driver.find_element(By.XPATH, "/html/body/div[11]/div/div/div[2]/div/form/div[8]/div/select"))
+# types.select_by_visible_text('Normal Time') 
+
+# name = driver.find_element(By.XPATH, "/html/body/div[11]/div/div/div[2]/div/form/div[9]/div[5]/input")
+# name.send_keys("Ali")
+# lastname = driver.find_element(By.XPATH, "/html/body/div[11]/div/div/div[2]/div/form/div[9]/div[6]/input")
+# # lastname.send_keys("Raza")
+
+# # captcha  =driver.find_element(By.XPATH, "/html/body/div[2]/div[3]/div[1]/div/div/span/div[1]").click()
+# # time.sleep(2)
+
+# # Clicker = driver.find_element(By.XPATH, "/html/body/div[11]/div/div/div[2]/div/form/div[9]/p/input").click
+# # submit = driver.find_element(By.XPATH, "/html/body/div[11]/div/div/div[2]/div/form/div[9]/div[11]/button").click
+# # time.sleep(100)  # Adjust the sleep time as needed"
+
+
+
+here is the date element i want to check every date if it selecteabe then select the dte & break the loop then show the current secelted date 
+
+"<div class="datepicker datepicker-dropdown dropdown-menu datepicker-orient-left datepicker-orient-bottom" style="top: 1358.27px; left: 436.4px; z-index: 10; display: block;"><div class="datepicker-days" style="display: block;"><table class="table-condensed"><thead><tr><th colspan="7" class="datepicker-title" style="display: none;"></th></tr><tr><th class="prev">«</th><th colspan="5" class="datepicker-switch" data-original-title="" title="">July 2024</th><th class="next">»</th></tr><tr><th class="dow">Su</th><th class="dow">Mo</th><th class="dow">Tu</th><th class="dow">We</th><th class="dow">Th</th><th class="dow">Fr</th><th class="dow">Sa</th></tr></thead><tbody><tr><td class="old day disabled" title="Not Available" data-date="1719705600000">30</td><td class="day disabled" title="Not Available" data-date="1719792000000">1</td><td class="day disabled" title="Not Available" data-date="1719878400000">2</td><td class="day disabled" title="Not Available" data-date="1719964800000">3</td><td class="day disabled" title="Not Available" data-date="1720051200000">4</td><td class="day disabled" title="Not Available" data-date="1720137600000">5</td><td class="day disabled" title="Not Available" data-date="1720224000000">6</td></tr><tr><td class="day disabled" title="Not Available" data-date="1720310400000">7</td><td class="day disabled" title="Not Available" data-date="1720396800000">8</td><td class="day disabled" title="Not Available" data-date="1720483200000">9</td><td class="day disabled" title="Not Available" data-date="1720569600000">10</td><td class="day disabled" title="Not Available" data-date="1720656000000">11</td><td class="day disabled" title="Not Available" data-date="1720742400000">12</td><td class="day disabled" title="Not Available" data-date="1720828800000">13</td></tr><tr><td class="day disabled" title="Not Available" data-date="1720915200000">14</td><td class="day disabled" title="Not Available" data-date="1721001600000">15</td><td class="day disabled" title="Not Available" data-date="1721088000000">16</td><td class="day disabled" title="Not Available" data-date="1721174400000">17</td><td class="day disabled" title="Not Available" data-date="1721260800000">18</td><td class="day disabled" title="Not Available" data-date="1721347200000">19</td><td class="day disabled" title="Not Available" data-date="1721433600000">20</td></tr><tr><td class="day disabled" title="Not Available" data-date="1721520000000">21</td><td class="day disabled" title="Not Available" data-date="1721606400000">22</td><td class="day disabled" title="Not Available" data-date="1721692800000">23</td><td class="day disabled" title="Not Available" data-date="1721779200000">24</td><td class="day disabled" title="Not Available" data-date="1721865600000">25</td><td class="day disabled" title="Not Available" data-date="1721952000000">26</td><td class="day disabled" title="Not Available" data-date="1722038400000">27</td></tr><tr><td class="day disabled" title="Not Available" data-date="1722124800000">28</td><td class="day label-available" title="Available" data-date="1722211200000">29</td><td class="day label-available" title="Available" data-date="1722297600000">30</td><td class="day label-available" title="Available" data-date="1722384000000">31</td><td class="new day label-available" title="Available" data-date="1722470400000">1</td><td class="new day label-available" title="Available" data-date="1722556800000">2</td><td class="new day disabled" title="Not Available" data-date="1722643200000">3</td></tr><tr><td class="new day disabled" title="Not Available" data-date="1722729600000">4</td><td class="new day label-available" title="Available" data-date="1722816000000">5</td><td class="new day label-available" title="Available" data-date="1722902400000">6</td><td class="new day label-available" title="Available" data-date="1722988800000">7</td><td class="new day label-available" title="Available" data-date="1723075200000">8</td><td class="new day label-available" title="Available" data-date="1723161600000">9</td><td class="new day disabled" title="Not Available" data-date="1723248000000">10</td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr><tr><th colspan="7" class="clear" style="display: none;">Clear</th></tr></tfoot></table></div><div class="datepicker-months" style="display: none;"><table class="table-condensed"><thead><tr><th colspan="7" class="datepicker-title" style="display: none;"></th></tr><tr><th class="prev">«</th><th colspan="5" class="datepicker-switch" data-original-title="" title="">2024</th><th class="next">»</th></tr></thead><tbody><tr><td colspan="7"><span class="month">Jan</span><span class="month">Feb</span><span class="month">Mar</span><span class="month">Apr</span><span class="month">May</span><span class="month">Jun</span><span class="month focused">Jul</span><span class="month">Aug</span><span class="month">Sep</span><span class="month">Oct</span><span class="month">Nov</span><span class="month">Dec</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr><tr><th colspan="7" class="clear" style="display: none;">Clear</th></tr></tfoot></table></div><div class="datepicker-years" style="display: none;"><table class="table-condensed"><thead><tr><th colspan="7" class="datepicker-title" style="display: none;"></th></tr><tr><th class="prev">«</th><th colspan="5" class="datepicker-switch" data-original-title="" title="">2020-2029</th><th class="next">»</th></tr></thead><tbody><tr><td colspan="7"><span class="year old">2019</span><span class="year">2020</span><span class="year">2021</span><span class="year">2022</span><span class="year">2023</span><span class="year focused">2024</span><span class="year">2025</span><span class="year">2026</span><span class="year">2027</span><span class="year">2028</span><span class="year">2029</span><span class="year new">2030</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr><tr><th colspan="7" class="clear" style="display: none;">Clear</th></tr></tfoot></table></div><div class="datepicker-decades" style="display: none;"><table class="table-condensed"><thead><tr><th colspan="7" class="datepicker-title" style="display: none;"></th></tr><tr><th class="prev">«</th><th colspan="5" class="datepicker-switch" data-original-title="" title="">2000-2090</th><th class="next">»</th></tr></thead><tbody><tr><td colspan="7"><span class="decade old">1990</span><span class="decade">2000</span><span class="decade">2010</span><span class="decade focused">2020</span><span class="decade">2030</span><span class="decade">2040</span><span class="decade">2050</span><span class="decade">2060</span><span class="decade">2070</span><span class="decade">2080</span><span class="decade">2090</span><span class="decade new">2100</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr><tr><th colspan="7" class="clear" style="display: none;">Clear</th></tr></tfoot></table></div><div class="datepicker-centuries" style="display: none;"><table class="table-condensed"><thead><tr><th colspan="7" class="datepicker-title" style="display: none;"></th></tr><tr><th class="prev">«</th><th colspan="5" class="datepicker-switch" data-original-title="" title="">2000-2900</th><th class="next">»</th></tr></thead><tbody><tr><td colspan="7"><span class="century old">1900</span><span class="century focused">2000</span><span class="century">2100</span><span class="century">2200</span><span class="century">2300</span><span class="century">2400</span><span class="century">2500</span><span class="century">2600</span><span class="century">2700</span><span class="century">2800</span><span class="century">2900</span><span class="century new">3000</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr><tr><th colspan="7" class="clear" style="display: none;">Clear</th></tr></tfoot></table></div></div>
+"
